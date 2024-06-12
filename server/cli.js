@@ -44,11 +44,12 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <title>Document</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
         body {
             font-family: "Cabin", sans-serif;
         }
+
         @page {
             size: auto;
             /* auto is the initial value */
@@ -110,7 +111,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 <body>
     <!-- <div class="row row-end">icon</div> -->
 
-    <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: 1em;">${companyName}</h3>
+    <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: .1em;">${companyName}</h3>
     <span class="row row-center" style="text-transform: uppercase;">${companyAddress}</span>
     <span class="row row-center" style="text-transform: lowercase;">${companyEmail}</span>
 
@@ -123,14 +124,14 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
                 <span>${data.Name}</span>
             </div>
 
-           ${
-             data.City
-               ? `<div class="row">
+            ${
+            data.City
+            ? `<div class="row">
                 <span class="bold">Address :&nbsp; </span>
                 <span>${data.City}</span>
             </div>`
-               : ""
-           }
+            : ""
+            }
 
             <div class="row">
                 <span class="bold">State :&nbsp; </span>
@@ -138,24 +139,24 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
             </div>
 
             ${
-              data.Email
-                ? `<div class="row">
-              <span class="bold">Email :&nbsp; </span>
-              <span>${data.Email}</span>
-          </div>`
-                : ""
+            data.Email
+            ? `<div class="row">
+                <span class="bold">Email :&nbsp; </span>
+                <span>${data.Email}</span>
+            </div>`
+            : ""
             }
 
-           ${
-             data.Mobile
-               ? `<div class="row">
-              <span class="bold">Mobile :&nbsp; </span>
-              <span>${data.Mobile}</span>
-          </div>`
-               : ""
-           }
+            ${
+            data.Mobile
+            ? `<div class="row">
+                <span class="bold">Mobile :&nbsp; </span>
+                <span>${data.Mobile}</span>
+            </div>`
+            : ""
+            }
 
-            
+
 
             <!-- <div class="row">
                 <span class="bold">State Code :&nbsp; </span>
@@ -189,14 +190,14 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <div class="my-1">
         <div class="row gray-color row-space-between">
             <div class="black-color bold">Description</div>
-            <div class="black-color bold">Amount</div>
+            <div style="width: 6.5rem;" class="black-color bold">Amount</div>
         </div>
     </div>
 
     <div class="my-1">
         <div class="row row-space-between">
             <div>${data.Product}</div>
-            <div>${data.Amount}</div>
+            <div style="width: 6.5rem;">${data.Amount}</div>
         </div>
     </div>
 
@@ -204,25 +205,25 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Gross Amount</div>
-        <div class="bold">${
-          data.Amount -
-          (getNinePercentOfNumber(data.Amount) +
+        <div style="width: 6.5rem;" class="bold">${
+            data.Amount -
+            (getNinePercentOfNumber(data.Amount) +
             getNinePercentOfNumber(data.Amount))
-        }
+            }
         </div>
     </div>
     <hr style="height: 1px; background-color: #000" />
-    
+
     ${getCGSTORSGST(state, data.State, data.Amount)}
 
     <div class="my-2"></div>
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold">INR ${data.Amount}</div>
+        <div class="bold" style="width: 6.5rem;" >INR ${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
-    <div class="row row-space-between">
+    <div class="row row-space-between" style="text-transform: uppercase;">
         <div>Amount in word : ${getWordOfNumber(data.Amount)}</div>
     </div>
 
@@ -246,7 +247,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 </html>`;
 
   // Set the HTML content of the page
-  await page.setContent(htmlContent);
+  await page.setContent(htmlContent.replace('@','&commat;'));
 
   const outputInvoicesDir = `outputInvoices/${folder}`;
   const dirExists = await fs
@@ -302,18 +303,18 @@ function getCGSTORSGST(companyState, userState, amount) {
   if (companyState == state) {
     return ` <div class="row row-space-between">
         <div>Tax : SGST @9%</div>
-        <div>${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
     </div>
 
     <div class="row row-space-between">
         <div>Tax : CGST @9%</div>
-        <div>${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
     </div>`;
   } else {
     return `
     <div class="row row-space-between">
         <div>Tax : IGST @18%</div>
-        <div>${2 * getNinePercentOfNumber(amount)}</div>
+        <div style="width: 6.5rem;">${2 * getNinePercentOfNumber(amount)}</div>
     </div>`;
   }
 }

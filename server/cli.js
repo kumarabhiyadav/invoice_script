@@ -117,27 +117,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <div class="row row-space-between">
         
 
-        <div>
-            <div class="row">
-                <span class="">Invoice No :&nbsp; </span>
-                <span>${data.InvoiceNo}</span>
-            </div>
-
-            <div class="row">
-                <span class="">Date :&nbsp; </span>
-                <span>${new Date(data.Date).toLocaleDateString()}</span>
-            </div>
-
-            <div class="row">
-                <span class="">Order ID :&nbsp; </span>
-                <span>${data.OrderNo}</span>
-            </div>
-
-            <div class="">
-                <span class="">Payment Provider :&nbsp; </span>
-                <span>${data.PaymentProvider}</span>
-            </div>
-        </div>
+        
         <div>
             <div class="row">
                 <span class="bold">Name :&nbsp; </span>
@@ -183,19 +163,36 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
                 <span>${data.StateCode}</span>
             </div> -->
         </div>
+
+        <div style="width: 11rem;">
+            <div class="row">
+                <span class="">Invoice No :&nbsp; </span>
+                <span>${data.InvoiceNo}</span>
+            </div>
+
+            <div class="row">
+                <span class="">Date :&nbsp; </span>
+                <span>${new Date(data.Date).toLocaleDateString()}</span>
+            </div>
+
+            <div class="">
+                <span class="">Payment :-&nbsp; </span>
+                <span>${data.PaymentProvider}</span>
+            </div>
+        </div>
     </div>
 
     <div class="my-1">
         <div class="row gray-color row-space-between">
             <div class="black-color bold">Description</div>
-            <div style="width: 6.5rem;" class="black-color bold">Amount (INR)</div>
+            <div style="width: 11rem;" class="black-color bold">Amount (INR)</div>
         </div>
     </div>
 
     <div class="my-1">
         <div class="row row-space-between">
-            <div>${data.Product}</div>
-            <div style="width: 6.5rem;">${data.Amount}</div>
+            <div>${data.Product}<br> <span style="font-size:14px"> Order ID : ${data.OrderNo}<span></div>
+            <div style="width: 11rem">${data.Amount}</div>
         </div>
     </div>
 
@@ -203,7 +200,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Gross Amount</div>
-        <div style="width: 6.5rem;" class="bold">${
+        <div style="width: 11rem" class="bold">${
             data.Amount -
             (getNinePercentOfNumber(data.Amount) +
             getNinePercentOfNumber(data.Amount))
@@ -218,7 +215,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold" style="width: 6.5rem;" >${data.Amount}</div>
+        <div class="bold" style="width: 11rem" >${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
     <div class="row row-space-between" style="text-transform: uppercase;">
@@ -301,18 +298,18 @@ function getCGSTORSGST(companyState, userState, amount) {
   if (companyState == state) {
     return ` <div class="row row-space-between">
         <div>SGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
-        <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem">${getNinePercentOfNumber(amount)}</div>
     </div>
 
     <div class="row row-space-between">
         <div>CGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
-        <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem">${getNinePercentOfNumber(amount)}</div>
     </div>`;
   } else {
     return `
     <div class="row row-space-between">
         <div>IGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>18% </div>
-        <div style="width: 6.5rem;">${2 * getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem">${2 * getNinePercentOfNumber(amount)}</div>
     </div>`;
   }
 }

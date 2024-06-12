@@ -7,26 +7,26 @@
     <title>Document</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
         body {
             font-family: "Cabin", sans-serif;
         }
-
         @page {
             size: auto;
             /* auto is the initial value */
             margin: 10px;
         }
 
-        @media print {
+         @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-            font-family: "Cabin", sans-serif;
 
             }
         }
+
+        
 
         .row {
             display: flex;
@@ -73,11 +73,14 @@
 
     <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: .1em;">${companyName}</h3>
     <span class="row row-center" style="text-transform: uppercase;">${companyAddress}</span>
-    <span class="row row-center" style="text-transform: lowercase;">${companyEmail}</span>
+    <span class="row row-center" style="text-transform: lowercase;">${companyEmail.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
 
 
     <hr />
     <div class="row row-space-between">
+        
+
+        
         <div>
             <div class="row">
                 <span class="bold">Name :&nbsp; </span>
@@ -102,7 +105,7 @@
             data.Email
             ? `<div class="row">
                 <span class="bold">Email :&nbsp; </span>
-                <span>${data.Email}</span>
+                <span>${data.Email.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
             </div>`
             : ""
             }
@@ -124,7 +127,7 @@
             </div> -->
         </div>
 
-        <div>
+        <div style="width: 11rem;">
             <div class="row">
                 <span class="">Invoice No :&nbsp; </span>
                 <span>${data.InvoiceNo}</span>
@@ -135,13 +138,8 @@
                 <span>${new Date(data.Date).toLocaleDateString()}</span>
             </div>
 
-            <div class="row">
-                <span class="">Order ID :&nbsp; </span>
-                <span>${data.OrderNo}</span>
-            </div>
-
             <div class="">
-                <span class="">Payment Provider :&nbsp; </span>
+                <span class="">Payment :-&nbsp; </span>
                 <span>${data.PaymentProvider}</span>
             </div>
         </div>
@@ -150,14 +148,14 @@
     <div class="my-1">
         <div class="row gray-color row-space-between">
             <div class="black-color bold">Description</div>
-            <div style="width: 6.5rem;" class="black-color bold">Amount (INR)</div>
+            <div style="width: 11rem;" class="black-color bold">Amount (INR)</div>
         </div>
     </div>
 
     <div class="my-1">
         <div class="row row-space-between">
-            <div>${data.Product}</div>
-            <div style="width: 6.5rem;">${data.Amount}</div>
+            <div>${data.Product}<br> <span style="font-size:14px"> Order ID : ${data.OrderNo}<span></div>
+            <div style="width: 11rem; text-align: center; margin-right: 1rem;">${data.Amount}</div>
         </div>
     </div>
 
@@ -165,7 +163,7 @@
 
     <div class="row row-space-between">
         <div class="bold">Gross Amount</div>
-        <div style="width: 6.5rem;" class="bold">${
+        <div style="width: 11rem" class="bold">${
             data.Amount -
             (getNinePercentOfNumber(data.Amount) +
             getNinePercentOfNumber(data.Amount))
@@ -180,7 +178,7 @@
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold" style="width: 6.5rem;" >${data.Amount}</div>
+        <div class="bold" style="width: 11rem" >${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
     <div class="row row-space-between" style="text-transform: uppercase;">

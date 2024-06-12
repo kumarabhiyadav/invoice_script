@@ -115,6 +115,29 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <hr />
     <div class="row row-space-between">
+        
+
+        <div>
+            <div class="row">
+                <span class="">Invoice No :&nbsp; </span>
+                <span>${data.InvoiceNo}</span>
+            </div>
+
+            <div class="row">
+                <span class="">Date :&nbsp; </span>
+                <span>${new Date(data.Date).toLocaleDateString()}</span>
+            </div>
+
+            <div class="row">
+                <span class="">Order ID :&nbsp; </span>
+                <span>${data.OrderNo}</span>
+            </div>
+
+            <div class="">
+                <span class="">Payment Provider :&nbsp; </span>
+                <span>${data.PaymentProvider}</span>
+            </div>
+        </div>
         <div>
             <div class="row">
                 <span class="bold">Name :&nbsp; </span>
@@ -159,28 +182,6 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
                 <span class="bold">State Code :&nbsp; </span>
                 <span>${data.StateCode}</span>
             </div> -->
-        </div>
-
-        <div>
-            <div class="row">
-                <span class="">Invoice No :&nbsp; </span>
-                <span>${data.InvoiceNo}</span>
-            </div>
-
-            <div class="row">
-                <span class="">Date :&nbsp; </span>
-                <span>${new Date(data.Date).toLocaleDateString()}</span>
-            </div>
-
-            <div class="row">
-                <span class="">Order ID :&nbsp; </span>
-                <span>${data.OrderNo}</span>
-            </div>
-
-            <div class="">
-                <span class="">Payment Provider :&nbsp; </span>
-                <span>${data.PaymentProvider}</span>
-            </div>
         </div>
     </div>
 

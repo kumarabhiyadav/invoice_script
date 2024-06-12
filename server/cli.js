@@ -44,29 +44,26 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <title>Document</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
         body {
             font-family: "Cabin", sans-serif;
         }
-
         @page {
             size: auto;
             /* auto is the initial value */
             margin: 10px;
         }
 
-        @media print {
+         @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+
             }
         }
 
-        body {
-            padding: 0%;
-            margin: 0%;
-        }
+        
 
         .row {
             display: flex;
@@ -113,7 +110,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: .1em;">${companyName}</h3>
     <span class="row row-center" style="text-transform: uppercase;">${companyAddress}</span>
-    <span class="row row-center" style="text-transform: lowercase;">${companyEmail}</span>
+    <span class="row row-center" style="text-transform: lowercase;">${companyEmail.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
 
 
     <hr />
@@ -142,7 +139,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
             data.Email
             ? `<div class="row">
                 <span class="bold">Email :&nbsp; </span>
-                <span>${data.Email}</span>
+                <span>${data.Email.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
             </div>`
             : ""
             }
@@ -176,7 +173,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
             </div>
 
             <div class="row">
-                <span class="">Order No. :&nbsp; </span>
+                <span class="">Order ID :&nbsp; </span>
                 <span>${data.OrderNo}</span>
             </div>
 
@@ -190,7 +187,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <div class="my-1">
         <div class="row gray-color row-space-between">
             <div class="black-color bold">Description</div>
-            <div style="width: 6.5rem;" class="black-color bold">Amount</div>
+            <div style="width: 6.5rem;" class="black-color bold">Amount (INR)</div>
         </div>
     </div>
 
@@ -220,7 +217,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold" style="width: 6.5rem;" >INR ${data.Amount}</div>
+        <div class="bold" style="width: 6.5rem;" >${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
     <div class="row row-space-between" style="text-transform: uppercase;">
@@ -247,7 +244,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 </html>`;
 
   // Set the HTML content of the page
-  await page.setContent(htmlContent.replace('@','&commat;'));
+  await page.setContent(htmlContent);
 
   const outputInvoicesDir = `outputInvoices/${folder}`;
   const dirExists = await fs
@@ -302,18 +299,18 @@ function getCGSTORSGST(companyState, userState, amount) {
   let state = userState.toLowerCase().trim().replace(" ", "_");
   if (companyState == state) {
     return ` <div class="row row-space-between">
-        <div>Tax : SGST @9%</div>
+        <div>SGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
         <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
     </div>
 
     <div class="row row-space-between">
-        <div>Tax : CGST @9%</div>
+        <div>CGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
         <div style="width: 6.5rem;">${getNinePercentOfNumber(amount)}</div>
     </div>`;
   } else {
     return `
     <div class="row row-space-between">
-        <div>Tax : IGST @18%</div>
+        <div>IGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>18% </div>
         <div style="width: 6.5rem;">${2 * getNinePercentOfNumber(amount)}</div>
     </div>`;
   }

@@ -23,12 +23,9 @@
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-            }
-        }
+            font-family: "Cabin", sans-serif;
 
-        body {
-            padding: 0%;
-            margin: 0%;
+            }
         }
 
         .row {
@@ -139,7 +136,7 @@
             </div>
 
             <div class="row">
-                <span class="">Order No. :&nbsp; </span>
+                <span class="">Order ID :&nbsp; </span>
                 <span>${data.OrderNo}</span>
             </div>
 
@@ -153,14 +150,14 @@
     <div class="my-1">
         <div class="row gray-color row-space-between">
             <div class="black-color bold">Description</div>
-            <div class="black-color bold">Amount</div>
+            <div style="width: 6.5rem;" class="black-color bold">Amount (INR)</div>
         </div>
     </div>
 
     <div class="my-1">
         <div class="row row-space-between">
             <div>${data.Product}</div>
-            <div style="width: 10rem;">${data.Amount}</div>
+            <div style="width: 6.5rem;">${data.Amount}</div>
         </div>
     </div>
 
@@ -168,7 +165,7 @@
 
     <div class="row row-space-between">
         <div class="bold">Gross Amount</div>
-        <div style="width: 10rem;" class="bold">${
+        <div style="width: 6.5rem;" class="bold">${
             data.Amount -
             (getNinePercentOfNumber(data.Amount) +
             getNinePercentOfNumber(data.Amount))
@@ -183,7 +180,7 @@
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold" style="width: 10rem;" >INR ${data.Amount}</div>
+        <div class="bold" style="width: 6.5rem;" >${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
     <div class="row row-space-between" style="text-transform: uppercase;">

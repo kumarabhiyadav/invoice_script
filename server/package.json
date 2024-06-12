@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "cors": "^2.8.5",
+    "cros": "^1.0.1",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "nedb": "^1.8.0",
+    "number-to-words": "^1.2.4",
+    "puppeteer": "^22.10.0",
+    "xlsx": "^0.18.5"
+  }
+}

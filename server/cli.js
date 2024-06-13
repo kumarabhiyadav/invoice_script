@@ -114,8 +114,8 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: .1em;">${companyName}</h3>
     <span class="row row-center" style="text-transform: uppercase;">${companyAddress}</span>
-    ${gstNo ?  `<span class="row row-center" style="text-transform: uppercase;">GST NO&nbsp;:-&nbsp;${gstNo}</span>`:''}
-    ${panNo ?  `<span class="row row-center" style="text-transform: uppercase;">PAN NO&nbsp;:-&nbsp;${panNo}</span>`:''}
+    ${panNo ?  `<span class="row row-center" style="text-transform: uppercase; font-size:14px">PAN NO&nbsp;:-&nbsp;${panNo}</span>`:''}
+    ${gstNo ?  `<span class="row row-center" style="text-transform: uppercase;font-size:14px">GST NO&nbsp;:-&nbsp;${gstNo}</span>`:''}
     <span class="row row-center" style="text-transform: lowercase;">${companyEmail.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
 
 

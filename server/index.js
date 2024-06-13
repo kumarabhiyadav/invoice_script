@@ -22,7 +22,7 @@ if (!fs.existsSync("uploads")) {
 
 // Route to handle file uploads
 app.post("/upload", (req, res) => {
-  let { companyName, companyAddress,companyEmail, selectedState } = req.body;
+  let { companyName, companyAddress,companyEmail, selectedState,gstNo, panNo } = req.body;
 
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
@@ -39,6 +39,8 @@ app.post("/upload", (req, res) => {
     companyName,
     companyEmail,
     selectedState,
+    gstNo,
+    panNo,
     file: newFilename,
     status: "Pending",
     result: "",
@@ -75,6 +77,8 @@ app.get("/process/:filename", (req, res) => {
           doc.companyAddress,
           doc.companyEmail,
           doc.selectedState,
+          doc.gstNo,
+          doc.panNo,
         ],
         {
           detached: true,

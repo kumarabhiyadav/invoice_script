@@ -20,6 +20,9 @@ document.getElementById("file-input").addEventListener("change", function () {
 const companyName = document.getElementById("companyName");
 const companyAddress = document.getElementById("companyAddress");
 const companyEmail = document.getElementById("companyEmail");
+const gstNo = document.getElementById("gstNo");
+const panNo = document.getElementById("panNo");
+
 
 const stateSelect = document.getElementById('states');
 const selectedState = stateSelect.options[stateSelect.selectedIndex].value;
@@ -37,6 +40,9 @@ const selectedState = stateSelect.options[stateSelect.selectedIndex].value;
     formData.append('companyAddress',companyAddress.value)
     formData.append('selectedState',selectedState);
     formData.append('companyEmail',companyEmail.value);
+    formData.append('gstNo',gstNo.value);
+    formData.append('panNo',panNo.value);
+
 
 
 

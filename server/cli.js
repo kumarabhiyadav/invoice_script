@@ -22,12 +22,14 @@ const fs = require("fs").promises;
       process.argv[4],
       process.argv[5],
       process.argv[6],
+      process.argv[7],
+      process.argv[8],
 
     );
   }
 })();
 
-async function createPDFFile(data, folder, companyName, companyAddress,companyEmail, state) {
+async function createPDFFile(data, folder, companyName, companyAddress,companyEmail, state,gstNo,panNo) {
   folder = folder.replace("uploads/", "");
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -112,6 +114,8 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <h3 class="row row-center" style="text-transform: uppercase; margin-bottom: .1em;">${companyName}</h3>
     <span class="row row-center" style="text-transform: uppercase;">${companyAddress}</span>
+    ${gstNo ?  `<span class="row row-center" style="text-transform: uppercase;">GST NO&nbsp;:-&nbsp;${gstNo}</span>`:''}
+    ${panNo ?  `<span class="row row-center" style="text-transform: uppercase;">PAN NO&nbsp;:-&nbsp;${panNo}</span>`:''}
     <span class="row row-center" style="text-transform: lowercase;">${companyEmail.replace('@','<span style="font-family:sans-serif;font-size:14px">&commat;</span>')}</span>
 
 

@@ -1,5 +1,5 @@
 const api = {
-  domain: "http://175.111.97.105::4001",
+  domain: "http://175.111.97.105:4001",
   endPoints: {
     status: "/status",
     download: "/download",

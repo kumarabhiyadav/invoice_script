@@ -192,7 +192,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
     <div class="my-1">
         <div class="row row-space-between">
             <div>${data.Product}<br> <span style="font-size:14px"> Order ID : ${data.OrderNo}<span></div>
-            <div style="width: 11rem">${data.Amount}</div>
+            <div style="width: 11rem; margin-right: -2rem;">${data.Amount}</div>
         </div>
     </div>
 
@@ -200,7 +200,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Gross Amount</div>
-        <div style="width: 11rem" class="bold">${
+        <div style="width: 11rem;margin-right: -2rem;" class="bold">${
             data.Amount -
             (getNinePercentOfNumber(data.Amount) +
             getNinePercentOfNumber(data.Amount))
@@ -215,7 +215,7 @@ async function createPDFFile(data, folder, companyName, companyAddress,companyEm
 
     <div class="row row-space-between">
         <div class="bold">Grand Total</div>
-        <div class="bold" style="width: 11rem" >${data.Amount}</div>
+        <div class="bold" style="width: 11rem;margin-right: -2rem;" >${data.Amount}</div>
     </div>
     <hr style="height: 1px; background-color: #000" />
     <div class="row row-space-between" style="text-transform: uppercase;">
@@ -298,18 +298,18 @@ function getCGSTORSGST(companyState, userState, amount) {
   if (companyState == state) {
     return ` <div class="row row-space-between">
         <div>SGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
-        <div style="width: 11rem">${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem;margin-right: -2rem;">${getNinePercentOfNumber(amount)}</div>
     </div>
 
     <div class="row row-space-between">
         <div>CGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>9% </div>
-        <div style="width: 11rem">${getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem;margin-right: -2rem;">${getNinePercentOfNumber(amount)}</div>
     </div>`;
   } else {
     return `
     <div class="row row-space-between">
         <div>IGST <span style="font-family:sans-serif;font-size:14px">&commat;</span>18% </div>
-        <div style="width: 11rem">${2 * getNinePercentOfNumber(amount)}</div>
+        <div style="width: 11rem;margin-right: -2rem;">${2 * getNinePercentOfNumber(amount)}</div>
     </div>`;
   }
 }
